@@ -1,10 +1,14 @@
+import Signin from "./component/Signin"
+import Appbar from "./component/Appbar"
 import Signup from "./component/signup"
 function App() {
 
   return (
-    <>
-    <Signup />  
-    </>
+    <div style={{width:"100vw", height:"100vh", backgroundColor:"#eeeeee"}}>
+      <Appbar />
+      {/* <Signup /> */}
+      <Signin />
+    </div>
   )
 }
 
