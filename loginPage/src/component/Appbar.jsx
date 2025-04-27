@@ -9,11 +9,19 @@ return <div style={{
     <div><Typography variant={"h5"}>Coursera</Typography></div>
     <div style={{display:"flex"}}>
         <div style={{marginRight:10}}>
-            <Button variant={"contained"}>SIGN IN</Button>
+            <Button variant={"contained"}
+            onClick={()=>{
+                window.location="/signup"
+            }}
+            >SIGN UP</Button>
         </div>
         
         <div>
-            <Button variant={"contained"}>SIGN IN</Button>
+            <Button variant={"contained"}
+            onClick={()=>{
+                window.location="/login"
+            }}
+            >SIGN IN</Button>
         </div>
     </div>
 
