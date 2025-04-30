@@ -3,7 +3,9 @@ import {Card, Typography} from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 function Signup(){
-     const [email, setEmail]= useState("")
+    //it is avoided to give anything id in the react
+     const [email, setEmail]= useState("");
+     const [password, setPassword]= useState("");
     return <div>
             <div style={{
                 paddingTop:150,
@@ -16,30 +18,44 @@ function Signup(){
             </div>
             <div style={{display:"flex", justifyContent:"center"}}>
             <Card variant={"outlined"} style={{width:400, padding:20}}>
-                <TextField fullWidth={true} id="username" label="Email" variant="outlined" /><br></br><br></br>
-                <TextField fullWidth={true} id="password" label="password" variant="outlined" /><br></br><br></br>
+                <TextField 
+                    onChange = {(e)=>{
+                        setEmail(e.target.value);
+                    }}
+                    fullWidth={true} 
+                    label="Email" 
+                    variant="outlined" 
+                /><br></br><br></br>
+                <TextField 
+                    onChange={(a)=>{
+                        setPassword(a.target.value);
+                    }}
+                    fullWidth={true} 
+                    label="password" 
+                    variant="outlined" 
+                /><br></br><br></br>
                 <Button 
                 size={'large'} 
                 variant="contained"
                 onClick={()=>{
-                    function callback2(){
-                        console.log(data);
-                    }
-                    function callback1(res){
-                        res.json().then(callback2)
-                    }
-                    let username = document.getElementById("username").value;
-                    let password = document.getElementById("password").value;
+
                     fetch("http://localhost:3005/admin/signup",{
                         method: "POST",
                         body: JSON.stringify({
-                            username,
-                            password 
+                            username: email,
+                            password : password
                         }),
                         headers:{
                             "Content-Type" : "application/json"
                         }
-                    }).then(callback1)
+                    }).then((res)=>{
+                        res.json().then((data)=>{
+                            console.log(data);
+                            localStorage.setItem("token", data.token);// storing json token in the local storage
+                            //because even if user closed the tab and whenever they open the side loken is there
+                            //token still retain unless user clears the token or logged out.
+                        })
+                    })
                 }}
                 >SIGN UP</Button>
             </Card>
