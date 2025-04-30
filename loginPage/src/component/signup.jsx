@@ -39,7 +39,7 @@ function Signup(){
                         headers:{
                             "Content-Type" : "application/json"
                         }
-                    }).then(callback)
+                    }).then(callback1)
                 }}
                 >SIGN UP</Button>
             </Card>
